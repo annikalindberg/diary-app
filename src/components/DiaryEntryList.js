@@ -1,18 +1,35 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import DiaryEntry from './DiaryEntry';
+import { toggleSort } from '../redux/actions/diaryActions';  // Import the toggle action
 
 const DiaryEntryList = () => {
-    const diaryEntries = useSelector((state) => state.diary.diaryEntries);
+    const dispatch = useDispatch();
+    const { diaryEntries = [], sortOrder } = useSelector((state) => state.diary || {});
 
-    // Check if diaryEntries exists and is an array
-    if (!Array.isArray(diaryEntries)) {
-        return <p>Loading...</p>;
+    const sortedEntries = [...diaryEntries].sort((a, b) => {
+        const dateA = new Date(a.date);
+        const dateB = new Date(b.date);
+
+        return sortOrder === 'ascending'
+            ? dateA - dateB
+            : dateB - dateA;
+    });
+
+    const getSortOrderText = () => {
+        return sortOrder === 'ascending'
+            ? 'Ascending'
+            : 'Descending';
     }
 
     return (
         <div>
-            {diaryEntries.map((entry) => (
+            {/* Add a toggle button */}
+            <button onClick={() => dispatch(toggleSort())}>
+               {getSortOrderText()} (Current: {sortOrder})
+            </button>
+
+            {sortedEntries.map((entry) => (
                 <DiaryEntry key={entry.id} entry={entry} />
             ))}
         </div>
