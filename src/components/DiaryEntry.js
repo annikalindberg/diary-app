@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { deleteEntry } from '../redux/actions/diaryActions';
 import { DeleteButton } from '../components/reusables/Buttons';
 import styled from 'styled-components';
+import { FaTrash } from 'react-icons/fa';
 
 export const EntryCard = styled.div`
   background-color: ${props => props.theme.colors.background};
@@ -25,7 +26,11 @@ const DiaryEntry = ({ entry }) => {
     <EntryCard>
       <h2>{entry.title}</h2>
       <p>{entry.content}</p>
-      <DeleteButton onClick={handleDelete}>Delete</DeleteButton>
+      <DeleteButton
+
+        onClick={handleDelete}>
+        <FaTrash style={{ marginRight: '9px', marginTop: '5px' }} />Delete
+      </DeleteButton>
     </EntryCard>
   );
 };

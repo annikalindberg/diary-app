@@ -7,7 +7,7 @@ const HeaderComponent = styled.header`
   background-color: ${props => props.theme.colors.lightbackground};
   color: ${props => props.theme.colors.text};
   text-align: center;
-  padding: ${props => props.theme.spacing.smallSpace};
+  padding: ${props => props.theme.spacing.largeSpace};
   font-size: 1.5rem;
   border-bottom: 2px solid ${props => props.theme.colors.secondary};
 `;

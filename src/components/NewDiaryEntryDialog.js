@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addEntry } from '../redux/actions/diaryActions';
-import { AddButton } from './reusables/Buttons';
+import { CtaButton } from './reusables/Buttons';
 import styled from 'styled-components';
+import { FaPlus } from 'react-icons/fa';
 
 const DialogContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: ${props => props.theme.spacing.mediumSpace};
+  margin-top: 20px;
 `;
-
 
 const StyledTextArea = styled.textarea`
   width: 100%;
@@ -52,10 +52,15 @@ const NewDiaryEntryDialog = () => {
                 maxLength="500"
                 value={content}
                 onChange={(e) => setContent(e.target.value)}
-                placeholder="What's on your mind?"
+                placeholder="Write something about your day..."
                 aria-label="Diary entry content"
             />
-            <AddButton onClick={handleAddEntry}>Add Entry</AddButton>
+        <CtaButton
+          onClick={handleAddEntry}
+          disabled={content.length === 0}>
+        < FaPlus style={{ marginRight: '9px', marginTop: '5px' }} /> Add Entry
+      </CtaButton>
+    
         </DialogContainer>
     );
 };
