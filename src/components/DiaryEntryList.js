@@ -1,50 +1,53 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import DiaryEntry from './DiaryEntry';
-import { TOGGLE_SORT } from '../redux/actions/diaryActions';  // Import the toggle action
-import { SortButton } from './reusables/Buttons';  
-import styled from 'styled-components';
+import { TOGGLE_SORT } from '../redux/actions/diaryActions';
 import { FaSort } from 'react-icons/fa';
+import Pagination from '@mui/material/Pagination';
+import Button from '@mui/material/Button';
+import styled from 'styled-components';
 
 export const ListContainer = styled.div`
-  margin-top: ${props => props.theme.spacing.mediumSpace};
+  margin-top: 20px;
 `;
-
-
-
 
 const DiaryEntryList = () => {
     const dispatch = useDispatch();
+    const [currentPage, setCurrentPage] = React.useState(1);
     const { diaryEntries = [], sortOrder } = useSelector((state) => state.diary || {});
+    const itemsPerPage = 5;
+    const totalPages = Math.ceil(diaryEntries.length / itemsPerPage);
 
     const sortedDiaryEntries = [...diaryEntries].sort((a, b) => {
         const dateA = new Date(a.date);
         const dateB = new Date(b.date);
-// this returns a number, either positive or negative depending on the sort order (ascending or descending) and the difference between the two dates (dateA - dateB or dateB - dateA) 
-        return sortOrder === 'ascending'
-            ? dateA - dateB
-            : dateB - dateA;
+        return sortOrder === 'ascending' ? dateA - dateB : dateB - dateA;
     });
-// this function returns a string, either 'Ascending' or 'Descending' depending on the sort order (ascending or descending)
-    const getSortButtonText = () => {
-        return sortOrder === 'ascending'
-            ? 'Ascending'
-            : 'Descending';
-    }
+
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    const entriesToDisplay = sortedDiaryEntries.slice(startIndex, endIndex);
+
     return (
         <ListContainer>
-            <SortButton
+            <Button
+                variant="contained"
+                color={sortOrder === 'ascending' ? 'primary' : 'secondary'}
                 onClick={() => dispatch({ type: TOGGLE_SORT })}
-                isAscending={sortOrder === 'ascending'}  // Pass the prop here
             >
-                <FaSort style={{ marginRight:'7px' }} />
+                <FaSort style={{ marginRight: '8px' }} />
+                {sortOrder === 'ascending' ? 'Ascending' : 'Descending'}
+            </Button>
 
-
-                {getSortButtonText()}
-            </SortButton>
-            {sortedDiaryEntries.map((entry) => (
+            {entriesToDisplay.map((entry) => (
                 <DiaryEntry key={entry.id} entry={entry} />
             ))}
+
+            <Pagination
+                count={totalPages}
+                page={currentPage}
+                onChange={(event, newPage) => setCurrentPage(newPage)}
+            />
         </ListContainer>
     );
 };
