@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addEntry } from '../redux/actions/diaryActions';
+import { AddButton } from './reusables/Buttons';
 import styled from 'styled-components';
+
 const DialogContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 20px;
+  margin-top: ${props => props.theme.spacing.mediumSpace};
 `;
+
 
 const StyledTextArea = styled.textarea`
   width: 100%;
@@ -20,7 +23,7 @@ const StyledTextArea = styled.textarea`
   font-size: 1em;
   resize: none;
   &:focus {
-    outline-color: #0099cc;
+    outline-color: ${props => props.theme.colors.secondary};
     border: 1px solid #0099cc;
   }
   &:hover {
@@ -28,18 +31,7 @@ const StyledTextArea = styled.textarea`
   }
 `;
 
-const AddButton = styled.button`
-  background-color: #0099cc;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 1em;
-  &:hover {
-    background-color: #0077a3;
-  }
-`;
+
 const NewDiaryEntryDialog = () => {
     const [content, setContent] = useState('');
     const dispatch = useDispatch();

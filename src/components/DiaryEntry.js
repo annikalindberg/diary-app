@@ -1,28 +1,18 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { deleteEntry } from '../redux/actions/diaryActions';
+import { DeleteButton } from '../components/reusables/Buttons';
 import styled from 'styled-components';
 
 export const EntryCard = styled.div`
-  background-color: #fff;
+  background-color: ${props => props.theme.colors.background};
+  color: var(--text-color);
   padding: 16px;
   margin: 16px 0;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 `;
 
-export const DeleteButton = styled.button`
-  background-color: red;
-  color: white;
-  padding: 5px 10px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 0.8em;
-  &:hover {
-    background-color: darkred;
-  }
-`;
 
 const DiaryEntry = ({ entry }) => {
   const dispatch = useDispatch();

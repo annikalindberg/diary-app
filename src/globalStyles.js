@@ -1,10 +1,9 @@
 import { createGlobalStyle } from 'styled-components';
-import 'normalize.css'; 
 
 const GlobalStyles = createGlobalStyle`
   :root {
     --primary-color: #4CAF50;  // Green
-    --secondary-color: #FFC107;  // Amber
+    --secondary-color: #FFC107;  // Yellow
     --tertiary-color: #03A9F4;  // Light Blue
     --text-color: #212121;  // Dark Gray
     --light-text-color: #FAFAFA;  // Light Gray
