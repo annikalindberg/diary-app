@@ -1,70 +1,71 @@
-# Getting Started with Create React App
+# Diary Entry List Application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Overview
 
-## Available Scripts
+This coding challenge aims to build a diary entry list application utilizing React and Redux. The application serves as a platform where users can view diary entries, sort them by date, and paginate the list of entries. The user interface employs Material-UI components for a professional look, along with additional out-of-the-box functionalities.
 
-In the project directory, you can run:
+## Table of Contents
 
-### `npm start`
+- [Technical Choices](#technical-choices)
+  - [Frontend Framework - React](#frontend-framework---react)
+  - [State Management - Redux](#state-management---redux)
+  - [Styling - Styled-components and Material-UI](#styling---styled-components-and-material-ui)
+  - [Sorting and Pagination](#sorting-and-pagination)
+  - [API Connection](#api-connection)
+- [Decisions and Motivations](#decisions-and-motivations)
+- [How to Run The Project](#how-to-run-the-project)
+- [Future Improvements](#future-improvements)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Technical Choices
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Frontend Framework - React
 
-### `npm test`
+React was chosen due to its flexibility and massive community support. It is an established framework that facilitates the construction of scalable and maintainable applications.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### State Management - Redux
 
-### `npm run build`
+Redux serves as the state management solution, providing a single source of truth across the app. It excels in managing global state and offers easy extensibility for future features.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Styling - Styled-components and Material-UI
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Styled-components were initially used for dynamic styling based on component props. Material-UI was later introduced for pagination and buttons, to minimize the need for custom CSS and speed up development.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Sorting and Pagination
 
-### `npm run eject`
+JavaScript's native `.sort()` and `.slice()` functions were used for sorting and pagination, respectively. Redux manages the sort order as a piece of global state.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### API Connection
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+For real-world scalability, the application is configured to connect to a live API. During development, mock data and browser local storage were used to simulate API calls, thereby making the development process smoother and quicker.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Decisions and Motivations
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Why Dynamic Styling?
 
-## Learn More
+Dynamic styling via styled-components was chosen for greater UI customization based on component state or props. This is particularly helpful for UI elements like the sort button, which changes its color based on the sorting order.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Why Separate Pagination?
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+A decision was made to segregate pagination into a separate component for better manageability and potential reusability.
 
-### Code Splitting
+### Scalability and Extensibility
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+The primary focus was to lay a robust foundation that allows for future extensibility. The codebase is structured to be modular and scalable, ensuring that new features can be easily integrated.
 
-### Analyzing the Bundle Size
+## How to Run The Project
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+1. Clone the repository.
+2. Execute `npm install`.
+3. Run `npm start`.
+4. Open [http://localhost:3000](http://localhost:3000) in your web browser.
 
-### Making a Progressive Web App
+## Live Demo
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+https://annikasdiary.netlify.app/
 
-### Advanced Configuration
+## Future Improvements
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+1. Implement a search feature to look for specific entries.
+2. Introduce user authentication for a more personalized experience.
+3. Replace mock data with a live API.
 
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
