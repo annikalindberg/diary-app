@@ -12,35 +12,35 @@ export const ListContainer = styled.div`
 `;
 
 const DiaryEntryList = () => {
-    const dispatch = useDispatch();
-    const [currentPage, setCurrentPage] = React.useState(1);
-    const { diaryEntries = [], sortOrder } = useSelector((state) => state.diary || {});
+    const dispatch = useDispatch(); // dispatch action to toggle sort order
+    const [currentPage, setCurrentPage] = React.useState(1); // set current page to 1
+    const { diaryEntries = [], sortOrder } = useSelector((state) => state.diary || {}); // if state.diary is undefined, set diaryEntries to empty array to avoid error when sorting 
     const itemsPerPage = 5;
-    const totalPages = Math.ceil(diaryEntries.length / itemsPerPage);
+    const totalPages = Math.ceil(diaryEntries.length / itemsPerPage); // calculate total pages based on number of diary entries and items per page
 
-    const sortedDiaryEntries = [...diaryEntries].sort((a, b) => {
-        const dateA = new Date(a.date);
-        const dateB = new Date(b.date);
-        return sortOrder === 'ascending' ? dateA - dateB : dateB - dateA;
+    const sortedDiaryEntries = [...diaryEntries].sort((a, b) => { // sort diary entries by date
+        const dateA = new Date(a.date); // convert date string to Date object
+        const dateB = new Date(b.date);  // convert date string to Date object 
+        return sortOrder === 'ascending' ? dateA - dateB : dateB - dateA; // if sortOrder is ascending, sort by dateA - dateB, else sort by dateB - dateA 
     });
 
-    const startIndex = (currentPage - 1) * itemsPerPage;
-    const endIndex = startIndex + itemsPerPage;
-    const entriesToDisplay = sortedDiaryEntries.slice(startIndex, endIndex);
+    const startIndex = (currentPage - 1) * itemsPerPage; // calculate start index based on current page and items per page 
+    const endIndex = startIndex + itemsPerPage; // calculate end index based on start index and items per page
+    const entriesToDisplay = sortedDiaryEntries.slice(startIndex, endIndex); // slice diary entries based on start and end index
 
     return (
         <ListContainer>
             <Button
                 variant="contained"
-                color={sortOrder === 'ascending' ? 'primary' : 'secondary'}
+                color={sortOrder === 'ascending' ? 'primary' : 'secondary'} 
                 onClick={() => dispatch({ type: TOGGLE_SORT })}
             >
                 <FaSort style={{ marginRight: '8px' }} />
                 {sortOrder === 'ascending' ? 'Ascending' : 'Descending'}
             </Button>
 
-            {entriesToDisplay.map((entry) => (
-                <DiaryEntry key={entry.id} entry={entry} />
+            {entriesToDisplay.map((entry) => ( // map over entriesToDisplay array and render DiaryEntry component for each entry 
+                <DiaryEntry key={entry.id} entry={entry} /> // pass entry as prop to DiaryEntry component
             ))}
 
             <Pagination

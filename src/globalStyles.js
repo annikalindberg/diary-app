@@ -34,7 +34,6 @@ const GlobalStyles = createGlobalStyle`
     cursor: pointer;
   }
 
-  // other global styles...
 `;
 
 export default GlobalStyles;

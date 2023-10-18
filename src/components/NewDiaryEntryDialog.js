@@ -5,6 +5,7 @@ import { CtaButton } from './reusables/Buttons';
 import styled from 'styled-components';
 import { FaPlus } from 'react-icons/fa';
 
+
 const DialogContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -36,19 +37,22 @@ const NewDiaryEntryDialog = () => {
     const [content, setContent] = useState('');
     const dispatch = useDispatch();
 
-    const handleAddEntry = () => {
+  const handleAddEntry = () => { // create new entry object and dispatch addEntry action with new entry as payload
         const newEntry = {
-            id: Date.now(),
-            content,
-            date: new Date().toISOString(),
+          id: Date.now(), // use current date as id
+          content, // use content from state
+          date: new Date().toISOString(), // convert date to ISO string
         };
-        dispatch(addEntry(newEntry));
-        setContent('');
+    dispatch(addEntry(newEntry)); // dispatch addEntry action with new entry as payload
+    setContent(''); // reset content to empty string
     };
 
     return (
-        <DialogContainer>
-            <StyledTextArea
+      <DialogContainer>
+
+        <StyledTextArea
+
+
                 maxLength="500"
                 value={content}
                 onChange={(e) => setContent(e.target.value)}

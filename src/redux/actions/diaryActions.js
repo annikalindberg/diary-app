@@ -2,7 +2,7 @@ export const ADD_ENTRY = 'ADD_ENTRY';
 export const DELETE_ENTRY = 'DELETE_ENTRY';
 export const TOGGLE_SORT = 'TOGGLE_SORT';
 
-export const addEntry = (entry) => ({
+export const addEntry = (entry) => ({ 
     type: ADD_ENTRY,
     payload: entry,
 });
