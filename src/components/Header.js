@@ -12,12 +12,16 @@ const HeaderComponent = styled.header`
   padding: ${props => props.theme.spacing.largeSpace};
   font-size: 1.5rem;
   border-bottom: 2px solid ${props => props.theme.colors.secondary};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
 `;
 const IconWrapper = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 0 50px 16px 0;
+    margin: 0 20px 0 20px;
     `
     ;
 
@@ -30,8 +34,10 @@ const Header = () => {
                 <FcAcceptDatabase size={42}
                 />
             </IconWrapper>
-
             My Coding Diary
+            <IconWrapper>
+                <FcAcceptDatabase size={42} />
+            </IconWrapper>
         </HeaderComponent>
     );
 };
